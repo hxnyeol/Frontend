@@ -11,7 +11,7 @@ import Footer from "../../components/Footer";
 const Menu = () => {
   const { token } = useAuth();
   const location = useLocation();
-
+  const [data, setData] = useState(null);
   if (!token) {
     return <Navigate to="/login" replace state={{ from: location }} />;
   }
@@ -19,7 +19,8 @@ const Menu = () => {
   // fetchData from user
   const fetchData = async () => {
     const item = await axios.get("http://localhost:3000/list-travel");
-    console.log("fetched Item", item);
+    console.log("fetched Item", item.data);
+    setData(item.data);
     return item;
     // return item;
   };
@@ -28,13 +29,16 @@ const Menu = () => {
     destination: "",
     startDate: "",
     endDate: "",
-    travelMode: "",
+    modeOfTravel: "",
     notes: "",
-    bookmark: false,
+    bookmarked: false,
     activities: "",
   });
-  const handleForm = (e) => {
+  const handleForm = async (e) => {
     e.preventDefault();
+    const new_item = await axios.post("http://localhost:3000/add-travel", {
+      ...formData,
+    });
   };
 
   useEffect(() => {
@@ -48,6 +52,12 @@ const Menu = () => {
   return (
     <div>
       <Navbar />
+      <ul>
+        {data &&
+          data.map((item) => {
+            return <li key={item._id}>{item.destination}</li>;
+          })}
+      </ul>
       <div>
         <div className="container">
           <form onSubmit={handleForm}>
@@ -110,11 +120,11 @@ const Menu = () => {
                 <select
                   name="travel"
                   id="travel"
-                  value={formData["travelMode"]}
+                  value={formData["modeOfTravel"]}
                   onChange={(e) => {
                     const res = e.target.value;
                     console.log(res);
-                    setFormData({ ...formData, travelMode: res });
+                    setFormData({ ...formData, modeOfTravel: res });
                   }}
                 >
                   <option value="Cruise">Cruise</option>
@@ -153,18 +163,18 @@ const Menu = () => {
               </div>
 
               <div>
-                <button
+                <span
                   onClick={() => {
-                    console.log(formData.bookmark);
+                    console.log(formData.bookmarked);
 
                     setFormData({
                       ...formData,
-                      bookmark: !formData["bookmark"],
+                      bookmarked: !formData["bookmarked"],
                     });
                   }}
                 >
                   Bookmark
-                </button>
+                </span>
               </div>
             </div>
 
