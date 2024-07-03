@@ -1,6 +1,9 @@
 import { useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import "../../App.css";
+import Navbar from "../../components/Navbar";
+import Footer from "../../components/Footer";
 // import { Link } from "react-router-dom";
 
 function SignUp() {
@@ -25,6 +28,7 @@ function SignUp() {
 
   return (
     <div>
+      <Navbar />
       <h2>Sign Up</h2>
       {error && <p style={{ color: "red" }}>{error}</p>}
       <form onSubmit={handleSignIn}>
@@ -46,11 +50,13 @@ function SignUp() {
             required
           />
         </div>
+
         <button type="submit">Sign In</button>
       </form>
       <p>
         Already have an account? <Link to="/login">Log In</Link>
       </p>
+      <Footer />
     </div>
   );
 }

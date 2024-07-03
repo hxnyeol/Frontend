@@ -4,6 +4,8 @@ import "../../index.css";
 
 import { useAuth } from "../../setup/auth/Auth";
 import { useNavigate } from "react-router";
+import Navbar from "../../components/Navbar";
+import Footer from "../../components/Footer";
 function SignIn() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -34,6 +36,7 @@ function SignIn() {
 
   return (
     <div>
+      <Navbar />
       {/* {token && navigate("/menu")} */}
       {token && "You are Logged In"}
 
@@ -62,6 +65,7 @@ function SignIn() {
           <button type="submit">Sign In</button>
         </form>
       }
+      <Footer />
     </div>
   );
 }

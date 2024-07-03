@@ -10,9 +10,7 @@ import Menu from "./pages/menu/index.jsx";
 import { AuthProvider } from "./setup/auth/Auth.jsx";
 import Logout from "./pages/log-out/index.jsx";
 // import { useAuth } from "./setup/auth/Auth.jsx";
-
-import "./App.css";
-
+import "./index.css";
 const router = createBrowserRouter([
   {
     path: "/",
