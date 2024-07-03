@@ -23,17 +23,9 @@ function SignIn() {
         },
         { withCredentials: true }
       );
-
       console.log(response.data);
-      // const { token } = response.data;
-
-      // if (token) {
-      //   login(token);
-      //   console.log("suc");
-      //   navigate("/menu");
-      //   // Move to the other page
-      // }
     } catch (error) {
+      console.log(error);
       setUsername("");
       setPassword("");
       setError("Sign-in failed. Please try again.");
@@ -42,7 +34,7 @@ function SignIn() {
 
   return (
     <div>
-      {token && navigate("/menu")}
+      {/* {token && navigate("/menu")} */}
       {token && "You are Logged In"}
 
       <h2>LogIn</h2>

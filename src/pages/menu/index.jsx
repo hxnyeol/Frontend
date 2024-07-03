@@ -4,13 +4,6 @@ import { useEffect } from "react";
 import axios from "axios";
 
 const Menu = () => {
-  useEffect(() => {
-    try {
-      fetchData();
-    } catch (e) {
-      console.log("fetch error");
-    }
-  }, []);
   const { token } = useAuth();
   const location = useLocation();
 
@@ -20,12 +13,19 @@ const Menu = () => {
 
   // fetchData from user
   const fetchData = async () => {
-    console.log("before fetching", token);
     const item = await axios.get("http://localhost:3000/list-travel");
-    console.log(item);
+    console.log("fetched Item", item);
     return item;
     // return item;
   };
+
+  useEffect(() => {
+    try {
+      fetchData();
+    } catch (e) {
+      console.log("fetch error", e);
+    }
+  }, []);
 
   return (
     <div>

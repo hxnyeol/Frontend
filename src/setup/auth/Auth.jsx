@@ -6,19 +6,18 @@ const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(Cookies.get("access-token"));
-  // useEffect(() => {
-  //   setToken(Cookies.get("access-token"));
-  //   if (token) {
-  //     console.log("worked");
-  //     axios.defaults.headers.common["Authorization"] = `Bearer ${token}`; // Make an Auth Header if token is valid
-  //     // setUser({ token: token });
-  //   }
-  // }, []);
+  useEffect(() => {
+    setToken(Cookies.get("access-token"));
+    if (token) {
+      axios.defaults.headers.common["Authorization"] = `Bearer ${token}`; // Make an Auth Header if token is valid
+      // setUser({ token: token });
+    }
+  }, []);
 
   // for testing
-  // useEffect(() => {
-  //   console.log("Debugging State : ", token);
-  // }, [token]);
+  useEffect(() => {
+    console.log("Debugging State : ", token);
+  }, [token]);
 
   const login = () => {
     const tempToken = Cookies.get("access-token");
