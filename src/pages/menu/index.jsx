@@ -15,7 +15,7 @@ const Menu = () => {
   const { token } = useAuth();
   const location = useLocation();
   const [data, setData] = useState(null);
-  const [isFormVisible, setIsFormVisible] = useState(true);
+  const [isFormVisible, setIsFormVisible] = useState(false);
   if (!token) {
     return <Navigate to="/login" replace state={{ from: location }} />;
   }
@@ -73,7 +73,7 @@ const Menu = () => {
   };
 
   return (
-    <div>
+    <div className="page">
       <Navbar />
       <div>
         {data &&
@@ -82,12 +82,10 @@ const Menu = () => {
               <div className="list-container" key={item._id}>
                 <div>
                   <div>
-                    <span>To</span>
+                    <span>To </span>
                     {item.destination}
                   </div>
-                  <div>
-                    <span>From</span> {item.start}{" "}
-                  </div>
+                  <span>From</span> {item.start} {item.startDate}
                 </div>
                 <span
                   onClick={() => {
@@ -102,8 +100,8 @@ const Menu = () => {
           })}
 
         <div>
-          <div onClick={handleShow}>
-            <IoIosAddCircleOutline />
+          <div className="add-button" onClick={handleShow}>
+            <IoIosAddCircleOutline width="10px" />
           </div>
         </div>
       </div>

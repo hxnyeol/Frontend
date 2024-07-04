@@ -35,7 +35,7 @@ function SignIn() {
   };
 
   return (
-    <div>
+    <div className="page">
       <Navbar />
       {/* {token && navigate("/menu")} */}
       {token && "You are Logged In"}

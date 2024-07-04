@@ -1,5 +1,11 @@
 const Footer = () => {
-  return <footer>&copyright; Rohan Raj</footer>;
+  return (
+    <footer>
+      <div>
+        <div>&copy; Rohan Raj</div>
+      </div>
+    </footer>
+  );
 };
 
 export default Footer;

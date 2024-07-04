@@ -175,6 +175,40 @@ input {
   border-radius: 0.25em;
 }
 
+.page {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.add-button svg {
+  height: 2em;
+  width: 2em;
+}
+.list-container {
+  border: 1px solid #110000;
+  margin-top: 0.1em;
+}
+
+.list-container div {
+}
+.page div {
+  flex: 3;
+}
+
+footer {
+  height: 3.5em;
+  color: #d8efd3;
+  background-color: rgb(46, 46, 46);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+footer div div {
+  margin-right: 2em;
+}
 .nav-top {
   display: flex;
   flex-direction: row;
