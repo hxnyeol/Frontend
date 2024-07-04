@@ -54,10 +54,10 @@ const Menu = () => {
   const handleDelete = (id) => {
     axios
       .delete(`http://localhost:3000/travel-items/${id}`)
-      .then(() => {
-        console.log("before calling");
-        fetchData();
+      .then((res) => {
+        console.log(res);
         console.log("complete");
+        fetchData();
       })
       .catch((e) => {
         console.log("Error has occurede in axxios", e);
