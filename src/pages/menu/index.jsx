@@ -86,6 +86,7 @@ const Menu = () => {
                     {item.destination}
                   </div>
                   <span>From</span> {item.start} {item.startDate}
+                  {item.bookmarked ? <FaBookmark /> : <FaRegBookmark />}
                 </div>
                 <span
                   onClick={() => {

@@ -138,7 +138,6 @@ table {
 }
 
 div .list-container {
-  background-color: ;
 }
 .list-container {
   display: flex;
@@ -187,7 +186,8 @@ input {
   width: 2em;
 }
 .list-container {
-  border: 1px solid #110000;
+  background-color: #d8efd3;
+  border-radius: 0.5em;
   margin-top: 0.1em;
 }
 
@@ -206,9 +206,6 @@ footer {
   align-items: center;
 }
 
-footer div div {
-  margin-right: 2em;
-}
 .nav-top {
   display: flex;
   flex-direction: row;
