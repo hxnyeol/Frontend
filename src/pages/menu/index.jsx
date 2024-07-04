@@ -16,14 +16,6 @@ const Menu = () => {
     return <Navigate to="/login" replace state={{ from: location }} />;
   }
 
-  // fetchData from user
-  const fetchData = async () => {
-    const item = await axios.get("http://localhost:3000/list-travel");
-    console.log("fetched Item", item.data);
-    setData(item.data);
-    return item;
-    // return item;
-  };
   const [formData, setFormData] = useState({
     start: "",
     destination: "",
@@ -34,20 +26,43 @@ const Menu = () => {
     bookmarked: false,
     activities: "",
   });
-  const handleForm = async (e) => {
+  const handleForm = (e) => {
     e.preventDefault();
-    const new_item = await axios.post("http://localhost:3000/add-travel", {
-      ...formData,
-    });
+    axios
+      .post("http://localhost:3000/add-travel", {
+        ...formData,
+      })
+      .then((response) => {
+        fetchData();
+        console.log("Complete");
+      });
   };
-
-  useEffect(() => {
+  const fetchData = () => {
     try {
-      fetchData();
+      axios.get("http://localhost:3000/list-travel").then((response) => {
+        console.log("fetch data", response.data);
+        setData(response.data);
+      });
     } catch (e) {
       console.log("fetch error", e);
+      setData([]);
     }
+  };
+  useEffect(() => {
+    fetchData();
   }, []);
+  const handleDelete = (id) => {
+    axios
+      .delete(`http://localhost:3000/travel-items/${id}`)
+      .then(() => {
+        console.log("before calling");
+        fetchData();
+        console.log("complete");
+      })
+      .catch((e) => {
+        console.log("Error has occurede in axxios", e);
+      });
+  };
 
   return (
     <div>
@@ -55,7 +70,19 @@ const Menu = () => {
       <ul>
         {data &&
           data.map((item) => {
-            return <li key={item._id}>{item.destination}</li>;
+            return (
+              <li key={item._id}>
+                {item.destination}
+                <span
+                  onClick={() => {
+                    handleDelete(item._id);
+                  }}
+                >
+                  Delete
+                </span>{" "}
+                <span>Edit</span>
+              </li>
+            );
           })}
       </ul>
       <div>
