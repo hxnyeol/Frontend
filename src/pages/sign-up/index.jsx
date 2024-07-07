@@ -11,7 +11,7 @@ function SignUp() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
-  const handleSignIn = async (e) => {
+  const handleSignUp = async (e) => {
     e.preventDefault();
     try {
       const response = await axios.post("http://localhost:3000/register", {
@@ -27,35 +27,59 @@ function SignUp() {
   };
 
   return (
-    <div>
+    <div className="page">
       <Navbar />
-      <h2>Sign Up</h2>
-      {error && <p style={{ color: "red" }}>{error}</p>}
-      <form onSubmit={handleSignIn}>
-        <div>
-          <label>Username:</label>
-          <input
-            type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            required
-          />
-        </div>
-        <div>
-          <label>Password:</label>
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </div>
 
-        <button type="submit">Sign In</button>
-      </form>
-      <p>
-        Already have an account? <Link to="/login">Log In</Link>
-      </p>
+      {error && <p style={{ color: "red" }}>{error}</p>}
+      <div className="container">
+        <form onSubmit={handleSignUp}>
+          <div>
+            <div>
+              <h2 className="tag">Sign Up</h2>
+            </div>
+          </div>
+          <div>
+            <div>Username</div>
+            <div></div>
+          </div>
+
+          <div>
+            <div>
+              <input
+                type="text"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                required
+              />
+            </div>
+          </div>
+
+          <div>
+            <div>Password</div>
+          </div>
+
+          <div>
+            <div>
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+            </div>
+          </div>
+          <div>
+            <div>
+              {" "}
+              <button type="submit">Sign In</button>
+            </div>
+          </div>
+          <div>
+            Already have an account? <Link to="/login">Log In</Link>
+          </div>
+        </form>
+      </div>
+
       <Footer />
     </div>
   );

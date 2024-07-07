@@ -3,15 +3,16 @@ import axios from "axios";
 import "../../index.css";
 
 import { useAuth } from "../../setup/auth/Auth";
-import { useNavigate } from "react-router";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
+import { Navigate } from "react-router";
+
 function SignIn() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const { login, token } = useAuth();
-  const navigate = useNavigate();
+
   // Redirect to Menu if User is Already Logged in!
 
   const handleSignIn = async (e) => {
@@ -37,34 +38,52 @@ function SignIn() {
   return (
     <div className="page">
       <Navbar />
+      {error && <p style={{ color: "red" }}>{error}</p>}
       {/* {token && navigate("/menu")} */}
-      {token && "You are Logged In"}
+      {token && <Navigate to="/menu" replace={true} />}
 
       <h2>LogIn</h2>
-      {error && <p style={{ color: "red" }}>{error}</p>}
-      {
+      <div className="container">
         <form onSubmit={handleSignIn}>
           <div>
-            <label>Username:</label>
-            <input
-              type="text"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              required
-            />
+            <div>Username</div>
+            <div></div>
+          </div>
+
+          <div>
+            <div>
+              <input
+                type="text"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                required
+              />
+            </div>
+          </div>
+
+          <div>
+            <div>Password</div>
+          </div>
+
+          <div>
+            <div>
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+            </div>
           </div>
           <div>
-            <label>Password:</label>
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
+            <div>
+              {" "}
+              <button type="submit">Sign In</button>
+            </div>
           </div>
-          <button type="submit">Sign In</button>
         </form>
-      }
+      </div>
+
       <Footer />
     </div>
   );

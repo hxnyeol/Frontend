@@ -34,6 +34,10 @@ const router = createBrowserRouter([
     path: "/menu",
     element: <Menu />,
   },
+  {
+    path: "*",
+    element: <NotFound />,
+  },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(

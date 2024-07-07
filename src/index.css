@@ -147,6 +147,9 @@ div .list-container {
   padding: 0.2rem 0.5rem;
 }
 
+.tag {
+  padding-bottom: 2em;
+}
 .container {
   margin: 1rem;
   display: flex;
@@ -236,4 +239,10 @@ body {
   font-family: "Nunito Sans";
   background-color: rgba(20, 20, 20, 0);
   color: rgb(38, 39, 46);
+}
+
+button {
+  color: rgb(38, 39, 46);
+  background-color: #d8efd3;
+  outline: "none";
 }
