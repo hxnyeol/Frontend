@@ -56,7 +56,7 @@ const Menu = () => {
   useEffect(() => {
     fetchData();
   }, []);
-  const handleDelete = (id) => {
+  const handleDelete = async (id) => {
     axios
       .delete(`http://localhost:3000/travel-items/${id}`)
       .then((res) => {
@@ -66,6 +66,16 @@ const Menu = () => {
       .catch((e) => {
         console.log("Error has occurede in axxios", e);
       });
+  };
+
+  const handleBookmark = async (id) => {
+    console.log("item id: ", id);
+    axios.patch(`http://localhost:3000/travel-items/${id}`).then((res) => {
+      console.log(res.data);
+      fetchData();
+
+      // Do the change operation! and Re-render
+    });
   };
 
   const handleShow = () => {
@@ -87,7 +97,13 @@ const Menu = () => {
                     {item.destination}
                   </div>
                   <span>From</span> {item.start} {item.startDate}
-                  {item.bookmarked ? <FaBookmark /> : <FaRegBookmark />}
+                  <span
+                    onClick={() => {
+                      handleBookmark(item._id);
+                    }}
+                  >
+                    {item.bookmarked ? <FaBookmark /> : <FaRegBookmark />}
+                  </span>
                 </div>
                 <span
                   onClick={() => {
